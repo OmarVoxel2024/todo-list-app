@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  z-index: 100;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #171a1f;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.app {
+  background-color: #171a1f;
+  border-radius: 12px;
+  border: 1px solid #252525;
+  padding: 20px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-top: 1px solid #252525;
+} 
+
+.task-title {
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+.checkbox {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  border: 1px solid #2c82f1;
+  border-radius: 50%;
+  position: relative;
+
+  .checkmark {
+    transition: 0.5s;
+    font-size: 12px;
+    color: #2c82f1;
+    opacity: 0;
+    font-weight: bold;
+    z-index: 2;
+  }
+
+  input {
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.task.completed .checkmark {
+  opacity: 1;
+}
+
+.holder {
+  margin-left: auto;
+}
+
+.delete-button {
+  cursor: pointer;
+  margin-left: 7px;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  justify-self: flex-end;
+  transform: scale(1.1);
+
+  &:hover::before,
+  &:hover::after {
+    background-color: rgb(179, 75, 75);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    transition: 0.5s;
+    height: 100%;
+    width: 1.9px;
+    top: 0;
+    left: 50%;
+    border-radius: 8px;
+    background-color: #787878;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.undo-button {
+  &:hover {
+    color: #ffaa00;
+  }
+
+  margin-left: auto;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.nav {
+  margin: auto;
+  width: fit-content;
+  border: 1px solid #252525;
+  display: flex;
+  border-radius: 12px;
+
+  button {
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: inherit;
+    min-width: 60px;
+
+    &.active {
+      background-color: #14171b;
+    }
+  }
+}
+
+.footer {
+  color: #777;
+  font-size: 12px;
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 8px;
+  }
+
+  .task-title {
+    font-size: 12px;
+  }
+
+  .nav {
+    font-size: 10px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+}
+
+.nav button {
+  user-select: none;
+}
